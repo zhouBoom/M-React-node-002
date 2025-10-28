@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import type { Habit } from '../utils/localStorage';
 import { getHabits, saveHabits, generateId, getTodayString } from '../utils/localStorage';
+import { calculateHabitCompletionScore } from '../utils/scoreHelper';
 
 export const useHabits = () => {
   const [habits, setHabits] = useState<Habit[]>([]);
@@ -51,7 +52,7 @@ export const useHabits = () => {
   // 切换习惯完成状态
   const toggleHabitCompletion = useCallback((habitId: string) => {
     const today = getTodayString();
-    const updatedHabits = habits.map(habit => {
+    let updatedHabits = habits.map(habit => {
       if (habit.id === habitId) {
         const newCompleted = !habit.completedToday;
         const newHistory = {
@@ -100,6 +101,16 @@ export const useHabits = () => {
       }
       return habit;
     });
+    
+    // 找到被更新的习惯，计算积分
+    const updatedHabit = updatedHabits.find(h => h.id === habitId);
+    if (updatedHabit) {
+      calculateHabitCompletionScore(
+        habitId,
+        updatedHabit.completedToday,
+        updatedHabit.streak
+      );
+    }
     
     setHabits(updatedHabits);
     saveHabits(updatedHabits);

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Menu, Layout, Drawer, Button } from 'antd';
-import { HomeOutlined, HistoryOutlined, SettingOutlined, MenuOutlined } from '@ant-design/icons';
+import { HomeOutlined, HistoryOutlined, TrophyOutlined, BarChartOutlined, SettingOutlined, MenuOutlined } from '@ant-design/icons';
 import { Link, useLocation } from 'react-router-dom';
 import type { MenuProps } from 'antd';
 
@@ -23,6 +23,20 @@ const Navbar: React.FC = () => {
       icon: <HistoryOutlined />,
       label: (
         <Link to="/history">历史</Link>
+      ),
+    },
+    {
+      key: '/achievement',
+      icon: <TrophyOutlined />,
+      label: (
+        <Link to="/achievement">成就</Link>
+      ),
+    },
+    {
+      key: '/statistics',
+      icon: <BarChartOutlined />,
+      label: (
+        <Link to="/statistics">统计</Link>
       ),
     },
     {

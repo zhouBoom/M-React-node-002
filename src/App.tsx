@@ -6,6 +6,8 @@ import Navbar from './components/Navbar';
 import AppFooter from './components/Footer';
 import Home from './pages/Home';
 import History from './pages/History';
+import Achievement from './pages/Achievement';
+import Statistics from './pages/Statistics';
 import Settings from './pages/Settings';
 import './App.css';
 
@@ -28,6 +30,8 @@ const App: React.FC = () => {
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/history" element={<History />} />
+                <Route path="/achievement" element={<Achievement />} />
+                <Route path="/statistics" element={<Statistics />} />
                 <Route path="/settings" element={<Settings />} />
               </Routes>
             </div>
