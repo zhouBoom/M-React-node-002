@@ -1,0 +1,238 @@
+/* 全局样式重置 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 主题变量 */
+:root {
+  --primary-color: #1890ff;
+  --bg-color: #f5f5f5;
+  --text-color: rgba(0, 0, 0, 0.85);
+  --card-bg: #ffffff;
+  --border-color: #d9d9d9;
+  --hover-bg: #f0f0f0;
+}
+
+/* 深色主题 */
+.dark-theme {
+  --primary-color: #40a9ff;
+  --bg-color: #141414;
+  --text-color: rgba(255, 255, 255, 0.85);
+  --card-bg: #1f1f1f;
+  --border-color: #303030;
+  --hover-bg: #2a2a2a;
+}
+
+/* 应用布局 */
+.app-layout {
+  min-height: 100vh;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease;
+}
+
+/* 导航栏样式 */
+.navbar {
+  padding: 0 24px;
+  background-color: var(--primary-color);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  float: left;
+  margin-right: 24px;
+}
+
+.desktop-menu {
+  float: right;
+}
+
+.mobile-menu-button {
+  display: none;
+  float: right;
+}
+
+/* 主内容区域 */
+.main-content {
+  padding: 24px;
+  min-height: calc(100vh - 64px - 70px);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* 首页样式 */
+.home-content {
+  padding: 24px;
+}
+
+.home-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.home-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.habit-card {
+  background-color: var(--card-bg);
+  border-color: var(--border-color);
+  transition: all 0.3s ease;
+}
+
+.habit-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* 历史页面样式 */
+.history-content {
+  padding: 24px;
+}
+
+.even-row {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.dark-theme .even-row {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+/* 设置页面样式 */
+.settings-content {
+  padding: 24px;
+}
+
+.settings-card {
+  background-color: var(--card-bg);
+  border-color: var(--border-color);
+  color: var(--text-color);
+  transition: all 0.3s ease;
+}
+
+/* Ant Design 组件覆盖样式 */
+.dark-theme .ant-card {
+  background-color: var(--card-bg);
+  border-color: var(--border-color);
+}
+
+.dark-theme .ant-card-head-title {
+  color: var(--text-color);
+}
+
+.dark-theme .ant-table {
+  background-color: var(--card-bg);
+}
+
+.dark-theme .ant-table-thead > tr > th {
+  background-color: var(--hover-bg);
+  color: var(--text-color);
+  border-color: var(--border-color);
+}
+
+.dark-theme .ant-table-tbody > tr > td {
+  border-color: var(--border-color);
+  color: var(--text-color);
+}
+
+.dark-theme .ant-list {
+  color: var(--text-color);
+}
+
+.dark-theme .ant-divider {
+  background-color: var(--border-color);
+}
+
+.dark-theme .ant-modal-content {
+  background-color: var(--card-bg);
+  border-color: var(--border-color);
+}
+
+.dark-theme .ant-modal-header {
+  background-color: var(--hover-bg);
+  border-color: var(--border-color);
+}
+
+.dark-theme .ant-modal-title {
+  color: var(--text-color);
+}
+
+.dark-theme .ant-input {
+  background-color: var(--hover-bg);
+  border-color: var(--border-color);
+  color: var(--text-color);
+}
+
+.dark-theme .ant-input::placeholder {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.dark-theme .ant-empty {
+  color: var(--text-color);
+}
+
+.dark-theme .ant-empty-description {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.dark-theme .ant-typography {
+  color: var(--text-color);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .main-content {
+    padding: 16px;
+  }
+  
+  .home-content,
+  .history-content,
+  .settings-content {
+    padding: 16px;
+  }
+  
+  .desktop-menu {
+    display: none;
+  }
+  
+  .mobile-menu-button {
+    display: block;
+  }
+  
+  .home-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .home-actions {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+  
+  .home-actions button {
+    flex: 1;
+    min-width: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-content {
+    padding: 12px;
+  }
+  
+  .navbar {
+    padding: 0 16px;
+  }
+}

@@ -1,0 +1,42 @@
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Layout, ConfigProvider } from 'antd';
+import { getSettings } from './utils/localStorage';
+import Navbar from './components/Navbar';
+import AppFooter from './components/Footer';
+import Home from './pages/Home';
+import History from './pages/History';
+import Settings from './pages/Settings';
+import './App.css';
+
+const { Content } = Layout;
+
+const App: React.FC = () => {
+  useEffect(() => {
+    // 初始化主题
+    const settings = getSettings();
+    document.documentElement.classList.toggle('dark-theme', settings.theme === 'dark');
+  }, []);
+
+  return (
+    <Router>
+      <ConfigProvider>
+        <Layout className="app-layout">
+          <Navbar />
+          <Content className="main-content">
+            <div className="container">
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/history" element={<History />} />
+                <Route path="/settings" element={<Settings />} />
+              </Routes>
+            </div>
+          </Content>
+          <AppFooter />
+        </Layout>
+      </ConfigProvider>
+    </Router>
+  );
+}
+
+export default App
