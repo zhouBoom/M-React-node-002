@@ -1,3 +1,6 @@
+import { safeLocalStorage } from './localStorage';
+import { logError } from './errorHandler';
+
 // 积分数据类型定义
 export interface ScoreData {
   totalScore: number;
@@ -13,14 +16,14 @@ export interface ScoreData {
 // 从localStorage读取积分数据
 export const getScoreData = (): ScoreData => {
   try {
-    const scoreStr = localStorage.getItem('scores');
+    const scoreStr = safeLocalStorage.getItem('scores');
     return scoreStr ? JSON.parse(scoreStr) : {
       totalScore: 0,
       lastUpdated: new Date().toISOString(),
       habitScores: {}
     };
   } catch (error) {
-    console.error('读取积分数据失败:', error);
+    logError('读取积分数据失败:', error as Error);
     return {
       totalScore: 0,
       lastUpdated: new Date().toISOString(),
@@ -32,9 +35,9 @@ export const getScoreData = (): ScoreData => {
 // 保存积分数据到localStorage
 export const saveScoreData = (scoreData: ScoreData): void => {
   try {
-    localStorage.setItem('scores', JSON.stringify(scoreData));
+    safeLocalStorage.setItem('scores', JSON.stringify(scoreData));
   } catch (error) {
-    console.error('保存积分数据失败:', error);
+    logError('保存积分数据失败:', error as Error);
   }
 };
 
@@ -125,7 +128,7 @@ export const getAchievementData = (habits: Array<{
   let mostCompletedHabit: any = null;
   
   habits.forEach(habit => {
-    const completions = Object.values(habit.history).filter(completed => completed).length;
+    const completions = Object.values(habit.history || {}).filter(completed => completed).length;
     if (completions > maxCompletions) {
       maxCompletions = completions;
       mostCompletedHabit = habit;
@@ -179,7 +182,7 @@ export const getWeeklyStats = (habits: Array<{
     // 计算当天完成的习惯数量
     let completedCount = 0;
     habits.forEach(habit => {
-      if (habit.history[dateStr]) {
+      if (habit.history && habit.history[dateStr]) {
         completedCount++;
       }
     });

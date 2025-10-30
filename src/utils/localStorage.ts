@@ -1,3 +1,41 @@
+// 安全的localStorage操作
+const safeLocalStorage = {
+  getItem: (key: string): string | null => {
+    try {
+      return localStorage.getItem(key);
+    } catch (error) {
+      console.error('读取localStorage失败:', error);
+      return null;
+    }
+  },
+
+  setItem: (key: string, value: string): void => {
+    try {
+      localStorage.setItem(key, value);
+    } catch (error) {
+      console.error('保存到localStorage失败:', error);
+    }
+  },
+
+  removeItem: (key: string): void => {
+    try {
+      localStorage.removeItem(key);
+    } catch (error) {
+      console.error('删除localStorage项失败:', error);
+    }
+  },
+
+  clear: (): void => {
+    try {
+      localStorage.clear();
+    } catch (error) {
+      console.error('清空localStorage失败:', error);
+    }
+  }
+};
+
+export { safeLocalStorage };
+
 // 习惯数据类型定义
 export interface Habit {
   id: string;
@@ -16,7 +54,7 @@ export interface Settings {
 // 存储习惯数据到localStorage
 export const saveHabits = (habits: Habit[]): void => {
   try {
-    localStorage.setItem('habits', JSON.stringify(habits));
+    safeLocalStorage.setItem('habits', JSON.stringify(habits));
   } catch (error) {
     console.error('保存习惯数据失败:', error);
   }
@@ -25,7 +63,7 @@ export const saveHabits = (habits: Habit[]): void => {
 // 从localStorage读取习惯数据
 export const getHabits = (): Habit[] => {
   try {
-    const habitsStr = localStorage.getItem('habits');
+    const habitsStr = safeLocalStorage.getItem('habits');
     return habitsStr ? JSON.parse(habitsStr) : [];
   } catch (error) {
     console.error('读取习惯数据失败:', error);
@@ -36,7 +74,7 @@ export const getHabits = (): Habit[] => {
 // 保存设置到localStorage
 export const saveSettings = (settings: Settings): void => {
   try {
-    localStorage.setItem('settings', JSON.stringify(settings));
+    safeLocalStorage.setItem('settings', JSON.stringify(settings));
   } catch (error) {
     console.error('保存设置失败:', error);
   }
@@ -45,7 +83,7 @@ export const saveSettings = (settings: Settings): void => {
 // 从localStorage读取设置
 export const getSettings = (): Settings => {
   try {
-    const settingsStr = localStorage.getItem('settings');
+    const settingsStr = safeLocalStorage.getItem('settings');
     return settingsStr ? JSON.parse(settingsStr) : { theme: 'light' };
   } catch (error) {
     console.error('读取设置失败:', error);
