@@ -6,6 +6,7 @@ import { useHabits } from '../hooks/useHabits';
 import HabitCard from '../components/HabitCard';
 import AddHabitModal from '../components/AddHabitModal';
 import { useNavigate } from 'react-router-dom';
+import { logError } from '../utils/errorHandler';
 
 const { Content } = Layout;
 const { Title, Paragraph } = Typography;
@@ -84,6 +85,13 @@ const Home: React.FC = () => {
               size="large"
             >
               查看历史记录
+            </Button>
+            <Button
+              type="primary"
+              onClick={() => logError('测试异常', new Error('测试异常'))}
+              size="large"
+            >
+              抛出异常测试
             </Button>
           </div>
 

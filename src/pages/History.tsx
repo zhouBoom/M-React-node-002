@@ -75,10 +75,10 @@ const History: React.FC = () => {
         width: 80,
         align: 'center',
         render: (record: any) => {
-          const completed = record.history[date];
+          const completed = record.history && record.history[date];
           return completed ? (
             <span style={{ fontSize: '20px' }}>✅</span>
-          ) : record.history[date] !== undefined ? (
+          ) : record.history && record.history[date] !== undefined ? (
             <span style={{ fontSize: '20px' }}>❌</span>
           ) : (
             '-' // 未记录
@@ -95,7 +95,7 @@ const History: React.FC = () => {
     return habits.map((habit) => ({
       key: habit.id,
       habit,
-      history: habit.history,
+      history: habit.history || {},
     }));
   }, [habits]);
 

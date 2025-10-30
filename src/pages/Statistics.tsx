@@ -14,9 +14,9 @@ const Statistics: React.FC = () => {
   const weeklyStats = getWeeklyStats(habits);
 
   // 准备图表数据
-  const chartData = weeklyStats.dateLabels.map((date, index) => ({
+  const chartData = (weeklyStats.dateLabels || []).map((date, index) => ({
     date,
-    完成数量: weeklyStats.dailyCompletions[index],
+    完成数量: (weeklyStats.dailyCompletions || [])[index] || 0,
   }));
 
   // 计算平均值
