@@ -9,6 +9,7 @@ import History from './pages/History';
 import Achievement from './pages/Achievement';
 import Statistics from './pages/Statistics';
 import Settings from './pages/Settings';
+import Logs from './pages/Logs';
 import './App.css';
 
 const { Content } = Layout;
@@ -33,6 +34,7 @@ const App: React.FC = () => {
                 <Route path="/achievement" element={<Achievement />} />
                 <Route path="/statistics" element={<Statistics />} />
                 <Route path="/settings" element={<Settings />} />
+                <Route path="/logs" element={<Logs />} />
               </Routes>
             </div>
           </Content>

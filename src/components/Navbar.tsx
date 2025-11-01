@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Menu, Layout, Drawer, Button } from 'antd';
-import { HomeOutlined, HistoryOutlined, TrophyOutlined, BarChartOutlined, SettingOutlined, MenuOutlined } from '@ant-design/icons';
+import { HomeOutlined, HistoryOutlined, TrophyOutlined, BarChartOutlined, SettingOutlined, MenuOutlined, WarningOutlined } from '@ant-design/icons';
 import { Link, useLocation } from 'react-router-dom';
 import type { MenuProps } from 'antd';
 
@@ -44,6 +44,13 @@ const Navbar: React.FC = () => {
       icon: <SettingOutlined />,
       label: (
         <Link to="/settings">设置</Link>
+      ),
+    },
+    {
+      key: '/logs',
+      icon: <WarningOutlined />,
+      label: (
+        <Link to="/logs">错误日志</Link>
       ),
     },
   ];
