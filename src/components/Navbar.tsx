@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Menu, Layout, Drawer, Button } from 'antd';
-import { HomeOutlined, HistoryOutlined, TrophyOutlined, BarChartOutlined, SettingOutlined, MenuOutlined } from '@ant-design/icons';
+import { HomeOutlined, HistoryOutlined, TrophyOutlined, BarChartOutlined, SettingOutlined, MenuOutlined, WarningOutlined, MonitorOutlined } from '@ant-design/icons';
 import { Link, useLocation } from 'react-router-dom';
 import type { MenuProps } from 'antd';
 
@@ -11,6 +11,13 @@ const Navbar: React.FC = () => {
   const location = useLocation();
 
   const menuItems: MenuProps['items'] = [
+    {
+      key: '/monitor',
+      icon: <MonitorOutlined />,
+      label: (
+        <Link to="/monitor">系统监控</Link>
+      ),
+    },
     {
       key: '/',
       icon: <HomeOutlined />,
@@ -44,6 +51,13 @@ const Navbar: React.FC = () => {
       icon: <SettingOutlined />,
       label: (
         <Link to="/settings">设置</Link>
+      ),
+    },
+    {
+      key: '/logs',
+      icon: <WarningOutlined />,
+      label: (
+        <Link to="/logs">错误日志</Link>
       ),
     },
   ];
