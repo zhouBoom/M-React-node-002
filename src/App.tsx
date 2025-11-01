@@ -11,6 +11,7 @@ import Statistics from './pages/Statistics';
 import Settings from './pages/Settings';
 import Logs from './pages/Logs';
 import Monitor from './pages/Monitor';
+import Health from './pages/Health';
 import './App.css';
 
 const { Content } = Layout;
@@ -37,6 +38,7 @@ const App: React.FC = () => {
                 <Route path="/settings" element={<Settings />} />
                 <Route path="/logs" element={<Logs />} />
 <Route path="/monitor" element={<Monitor />} />
+                <Route path="/health" element={<Health />} />
               </Routes>
             </div>
           </Content>

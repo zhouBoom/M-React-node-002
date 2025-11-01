@@ -46,6 +46,14 @@ export interface Habit {
   history: Record<string, boolean>;
 }
 
+// 任务数据类型定义
+export interface Task {
+  id: string;
+  name: string;
+  success: number;
+  fail: number;
+}
+
 // 主题设置类型
 export interface Settings {
   theme: 'light' | 'dark';
@@ -88,6 +96,26 @@ export const getSettings = (): Settings => {
   } catch (error) {
     console.error('读取设置失败:', error);
     return { theme: 'light' };
+  }
+};
+
+// 存储任务数据到localStorage
+export const saveTasks = (tasks: Task[]): void => {
+  try {
+    safeLocalStorage.setItem('tasks', JSON.stringify(tasks));
+  } catch (error) {
+    console.error('保存任务数据失败:', error);
+  }
+};
+
+// 从localStorage读取任务数据
+export const getTasks = (): Task[] => {
+  try {
+    const tasksStr = safeLocalStorage.getItem('tasks');
+    return tasksStr ? JSON.parse(tasksStr) : [];
+  } catch (error) {
+    console.error('读取任务数据失败:', error);
+    return [];
   }
 };
 
